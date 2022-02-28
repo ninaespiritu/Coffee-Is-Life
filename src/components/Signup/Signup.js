@@ -1,6 +1,7 @@
 export const Signup = ({ props }) => {
 	return (
 		<div>
+			<h2>Sign Up</h2>
 			<form onSubmit={props.handleSignup}>
 				<input
 					onChange={(e) => props.setEmail(e.target.value)}
