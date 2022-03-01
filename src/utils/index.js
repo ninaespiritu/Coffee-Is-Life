@@ -34,3 +34,17 @@ export const fetchLogin = async (setUser, username, password) => {
 		console.log(error);
 	}
 };
+
+/* export const fetchShops = async () => {
+	try {
+		const response = await fetch(`${process.env.REACT_APP_REST_API}shop`, {
+			method: "GET",
+			headers: { "Content-Type": "application/json" },
+		});
+		const data = await response.json();
+		console.log(data);
+	} catch (error) {
+		console.log(error);
+	}
+};
+ */
