@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { fetchLogin, fetchSignup } from "./utils";
 import { Signup } from "./components/Signup/Signup";
 import { Login } from "./components/Login/Login";
+import { HomePage } from "./components/HomePage/HomePage";
 
 const App = () => {
 	const [user, setUser] = useState();
@@ -23,10 +25,25 @@ const App = () => {
 	return (
 		<div>
 			<h1>{user ? `Welcome ${user.user.username}` : "Get Started"}</h1>
-			<Signup
-				props={{ handleSignup, setEmail, setUsername, setPassword }}
-			/>
-			<Login props={{ handleLogin, setUsername, setPassword }} />
+			{user ? (
+				<Router>
+					<Routes>
+						<Route path="/" element={<HomePage />} />
+					</Routes>
+				</Router>
+			) : (
+				<div>
+					<Signup
+						props={{
+							handleSignup,
+							setEmail,
+							setUsername,
+							setPassword,
+						}}
+					/>
+					<Login props={{ handleLogin, setUsername, setPassword }} />
+				</div>
+			)}
 		</div>
 	);
 };
