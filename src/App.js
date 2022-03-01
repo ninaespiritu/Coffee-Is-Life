@@ -5,6 +5,8 @@ import { fetchLogin, fetchSignup } from "./utils";
 import { Signup } from "./components/Signup/Signup";
 import { Login } from "./components/Login/Login";
 import { HomePage } from "./components/HomePage/HomePage";
+import { Profile } from "./components/Profile/Profile";
+import { Navbar } from "./components/Navbar/Navbar";
 
 const App = () => {
 	const [user, setUser] = useState();
@@ -24,13 +26,19 @@ const App = () => {
 
 	return (
 		<div>
-			<h1>{user ? `Welcome ${user.user.username}` : "Get Started"}</h1>
 			{user ? (
-				<Router>
-					<Routes>
-						<Route path="/" element={<HomePage />} />
-					</Routes>
-				</Router>
+				<div className="app">
+					<Router>
+						<Navbar />
+						<Routes>
+							<Route path="/" element={<HomePage />} />
+							<Route
+								path="/profile"
+								element={<Profile user={user} />}
+							/>
+						</Routes>
+					</Router>
+				</div>
 			) : (
 				<div>
 					<Signup
