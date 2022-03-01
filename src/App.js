@@ -24,12 +24,18 @@ const App = () => {
 		fetchLogin(setUser, username, password);
 	};
 
+	const handleLogout = async () => {
+		if (user) {
+			setUser(null);
+		}
+	};
+
 	return (
 		<div>
 			{user ? (
 				<div className="app">
 					<Router>
-						<Navbar />
+						<Navbar props={{handleLogout}} />
 						<Routes>
 							<Route path="/" element={<HomePage />} />
 							<Route
