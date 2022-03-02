@@ -14,6 +14,8 @@ const App = () => {
 	const [email, setEmail] = useState();
 	const [username, setUsername] = useState();
 	const [password, setPassword] = useState();
+	const [shops, setShops] = useState([]);
+	const [shopNum, setShopNum] = useState();
 
 	const handleSignup = async (e) => {
 		e.preventDefault();
@@ -36,10 +38,27 @@ const App = () => {
 			{user ? (
 				<div className="app">
 					<Router>
-						<Navbar props={{handleLogout}} />
+						<Navbar props={{ handleLogout }} />
 						<Routes>
-							<Route path="/" element={<Home />} />
-							<Route path="/shop/details" element={<ShopDetails />} />
+							<Route
+								path="/"
+								element={
+									<Home
+										shops={shops}
+										setShops={setShops}
+										setShopNum={setShopNum}
+									/>
+								}
+							/>
+							<Route
+								path="/shop/details"
+								element={
+									<ShopDetails
+										shops={shops}
+										shopNum={shopNum}
+									/>
+								}
+							/>
 							<Route
 								path="/profile"
 								element={<Profile user={user} />}

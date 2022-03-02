@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import "./ShopDetails.css";
 
-export const ShopDetails = () => {
-	const [shop, setShop] = useState({});
-	const { name } = useParams();
+export const ShopDetails = ({ shops, shopNum }) => {
+	const [shop, setShop] = useState();
+	const [reviews, setReviews] = useState([]);
 
 	useEffect(() => {
 		fetchShop();
@@ -15,17 +15,17 @@ export const ShopDetails = () => {
 				`${process.env.REACT_APP_REST_API}shop/details`,
 				{
 					method: "POST",
-					mode: "no-cors",
 					headers: { "Content-Type": "application/json" },
-					body: {
-						name,
-					},
+					body: JSON.stringify({
+						name: shops[shopNum].name,
+					}),
 				}
 			);
-			console.log(name);
 			const data = await response.json();
 			console.log(data.shop);
+			console.log(data.shop.reviews);
 			setShop(data.shop);
+			setReviews(data.shop.reviews);
 		} catch (error) {
 			console.log(error);
 		}
@@ -33,8 +33,28 @@ export const ShopDetails = () => {
 
 	return (
 		<div>
-			<h3>Shop Details</h3>
-			<h1>{shop.name}</h1>
+			{shop && (
+				<div className="shop">
+					<h4>Shop Details</h4>
+					<h1>{shop.name}</h1>
+					<h3>{shop.location}</h3>
+					<p>{shop.description}</p>
+
+					<div className="shop-img">
+						<img src={shop.url} alt="" />
+					</div>
+
+					<div>
+						<h2>Reviews</h2>
+						{reviews.map((review) => (
+							<div key={review._id}>
+								<h4>{review.username}</h4>
+								<p>{review.text}</p>
+							</div>
+						))}
+					</div>
+				</div>
+			)}
 		</div>
 	);
 };

@@ -37,13 +37,10 @@ export const fetchLogin = async (setUser, username, password) => {
 
 export const fetchShops = async (setShops) => {
 	try {
-		const response = await fetch(
-			`${process.env.REACT_APP_REST_API}shop`,
-			{
-				method: "GET",
-				headers: { "Content-Type": "application/json" },
-			}
-		);
+		const response = await fetch(`${process.env.REACT_APP_REST_API}shop`, {
+			method: "GET",
+			headers: { "Content-Type": "application/json" },
+		});
 		const data = await response.json();
 		console.log(data.shops);
 		setShops(data.shops);
