@@ -1,9 +1,119 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* CAUDEX */
+@import url("https://fonts.googleapis.com/css2?family=Caudex:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+/* SOURCE SANS PRO */
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
+
+:root {
+	--app-width: 1150px;
+	--font-title: "Caudex", sans-serif;
+	--font-text: -apple-system, BlinkMacSystemFont, "Source Sans Pro",
+		"Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+	--bg-light: #f3f3f3;
+	--bg-cream: #eff0ed;
+	--bg-dark: #292520;
+	--bg-orange: #9a4e2c;
+	--text-light: #f3f3f3;
+	--text-dark: #2a1b16;
+	--text-grey: #8e9291;
+	--text-greylight: #cacaca;
 }
 
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+	font-family: var(--font-text);
+}
 .app {
-    margin-top: 70px;
+	margin-top: 70px;
+	background-color: var(--bg-cream);
+}
+
+.welcome {
+	
+	background-color: var(--bg-cream);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.getstarted {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: row;
+}
+
+.getstarted-signup {
+	padding: 50px;
+	width: 50%;
+	height: 100%;
+	background-color: var(--bg-dark);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.getstarted-login {
+	padding: 50px;
+	width: 50%;
+	height: 100%;
+	background-color: var(--bg-orange);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+h1 {
+	margin: 0 0 30px;
+	font-size: 44px;
+	font-family: var(--font-title);
+}
+
+p {
+	line-height: 1.75;
+}
+
+button {
+	font-size: 16px;
+	font-weight: bold;
+	font-family: var(--font-title);
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	background: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1400px) {
+	.welcome-landing {
+		padding: 0 100px;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.welcome-landing {
+		padding: 0 60px;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.welcome-landing {
+		padding: 0 30px;
+	}
+	.getstarted-signup,
+	.getstarted-login {
+		width: 100%;
+	}
+	.getstarted {
+		flex-direction: column;
+	}
+	h1 {
+		font-size: 40px;
+		margin: 0 0 20px;
+	}
 }

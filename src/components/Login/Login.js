@@ -1,7 +1,10 @@
+import "./Login.css";
+
 export const Login = ({ props }) => {
 	return (
-		<div>
-			<h2>Log In</h2>
+		<div className="login">
+			<h1>Log In</h1>
+			<p>Already have an account? <span>Sign back in!</span></p>
 			<form onSubmit={props.handleLogin}>
 				<input
 					onChange={(e) => props.setUsername(e.target.value)}
@@ -11,7 +14,7 @@ export const Login = ({ props }) => {
 					onChange={(e) => props.setPassword(e.target.value)}
 					placeholder="Password"
 				/>
-				<button type="submit">Log In</button>
+				<button type="submit">Log In &#8594;</button>
 			</form>
 		</div>
 	);

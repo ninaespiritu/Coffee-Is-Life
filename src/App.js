@@ -8,6 +8,7 @@ import { Home } from "./components/Home/Home";
 import { Profile } from "./components/Profile/Profile";
 import { Navbar } from "./components/Navbar/Navbar";
 import { ShopDetails } from "./components/ShopDetails/ShopDetails";
+import { LandingPage } from "./components/LandingPage/LandingPage";
 
 const App = () => {
 	const [user, setUser] = useState();
@@ -67,16 +68,31 @@ const App = () => {
 					</Router>
 				</div>
 			) : (
-				<div>
-					<Signup
-						props={{
-							handleSignup,
-							setEmail,
-							setUsername,
-							setPassword,
-						}}
-					/>
-					<Login props={{ handleLogin, setUsername, setPassword }} />
+				<div className="welcome">
+					<div className="welcome-landing">
+					<LandingPage />
+					</div>
+					<div id="getstarted" className="getstarted">
+						<div className="getstarted-signup">
+							<Signup
+								props={{
+									handleSignup,
+									setEmail,
+									setUsername,
+									setPassword,
+								}}
+							/>
+						</div>
+						<div className="getstarted-login">
+							<Login
+								props={{
+									handleLogin,
+									setUsername,
+									setPassword,
+								}}
+							/>
+						</div>
+					</div>
 				</div>
 			)}
 		</div>
