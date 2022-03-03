@@ -50,6 +50,7 @@ export const ShopDetails = ({ shops, shopNum }) => {
 							<div key={review._id}>
 								<h4>{review.username}</h4>
 								<p>{review.text}</p>
+								<p>Rating: {review.rating} out of 10</p>
 							</div>
 						))}
 					</div>
