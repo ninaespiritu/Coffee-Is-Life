@@ -1,24 +1,153 @@
+.home {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.header {
+	width: 100%;
+	min-height: 100vh;
+	background-image: url("../../images/home-header.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.header-text {
+	padding: 80px 120px 80px 200px;
+	width: 740px;
+	background-color: var(--bg-dark);
+}
+
+.header-text h1 {
+	color: var(--text-light);
+	font-size: 72px;
+}
+
+.header-text p {
+	margin: 0 0 30px;
+	color: var(--text-light);
+}
+
+.header-text button {
+	padding: 12px 16px;
+	color: var(--text-light);
+	border: 2px solid var(--text-light);
+	transition: padding 0.25s, color 0.25s, background 0.25s;
+}
+
+.header-text button:hover {
+	padding: 12px 20px;
+	color: var(--text-dark);
+	background: var(--text-light);
+}
+
+.browse {
+	padding: 100px 0;
+}
+
+.browse h2 {
+	font-size: 44px;
+}
+
 .grid {
+	width: var(--app-width);
 	display: grid;
-	grid-template-columns: repeat(2, auto);
+	grid-template-columns: repeat(3, auto);
 	grid-template-rows: repeat(auto, auto);
-	gap: 30px 35px;
+	gap: 30px;
 	justify-content: center;
 	align-items: center;
 }
 
 .shops {
-	width: 500px;
-	height: auto;
+	/* width: 100%; */
+	min-height: 100%;
+	background-color: white;
 }
 
 .shops-img {
-    margin: 20px 0 0 0;
-    height: 300px;
+	/* margin: 20px 0 0 0; */
+	min-width: 300px;
+	height: 300px;
 }
 
 .shops-img img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+}
+
+.shops-info {
+	padding: 16px 20px;
+	min-height: 80px;
+}
+
+.shops-info h3 {
+	margin: 0 0 4px;
+	font-size: 20px;
+	font-weight: 700;
+	/* font-family: var(--font-title); */
+}
+
+.shops-info h4 {
+	margin: 8px 0 0;
+	padding: 4px 8px;
+	width: 100px;
+	color: var(--text-light);
+	font-size: 15px;
+	font-weight: 600;
+	text-align: center;
+	background-color: var(--bg-orangelight);
+	border-radius: 20px;
+}
+
+.shops-info p {
+	line-height: 1.5;
+}
+
+@media screen and (max-width: 1280px) {
+	.browse {
+		margin: 40px;
+	}
+	.grid {
+		width: 100%;
+	}
+	.shops-img {
+		min-width: 200px;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.header {
+		justify-content: center;
+	}
+	.header-text {
+		padding: 80px;
+	}
+	.grid {
+		grid-template-columns: repeat(2, auto);
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.grid {
+		gap: 25px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.browse {
+		margin: 20px;
+	}
+	.grid {
+		grid-template-columns: repeat(1, auto);
+	}
+	.shops-img {
+		height: 250px;
+	}
 }

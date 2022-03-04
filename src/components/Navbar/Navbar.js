@@ -20,9 +20,7 @@ export const Navbar = ({ props }) => {
 						Profile
 					</li>
 				</Link>
-				<li>
-					<button onClick={props.handleLogout}>Logout</button>
-				</li>
+				<li className="nav-item" onClick={props.handleLogout}>Logout</li>
 			</ul>
 			<div className="hamburger" onClick={handleClick}>
 				{click ? "✖" : "Menu"}

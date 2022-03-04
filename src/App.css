@@ -13,6 +13,7 @@
 	--bg-cream: #eff0ed;
 	--bg-dark: #292520;
 	--bg-orange: #9a4e2c;
+	--bg-orangelight: #f39a71;
 	--text-light: #f3f3f3;
 	--text-dark: #2a1b16;
 	--text-grey: #8e9291;
@@ -30,12 +31,11 @@ html {
 	font-family: var(--font-text);
 }
 .app {
-	margin-top: 70px;
-	background-color: var(--bg-cream);
+	/* margin-top: 70px; */
+	background-color: var(--bg-light);
 }
 
 .welcome {
-	
 	background-color: var(--bg-cream);
 	display: flex;
 	flex-direction: column;
@@ -72,6 +72,11 @@ html {
 h1 {
 	margin: 0 0 30px;
 	font-size: 44px;
+	font-family: var(--font-title);
+}
+
+h2 {
+	margin: 0 0 30px;
 	font-family: var(--font-title);
 }
 
