@@ -13,6 +13,7 @@ export const Login = ({ props }) => {
 				<input
 					onChange={(e) => props.setPassword(e.target.value)}
 					placeholder="Password"
+					type="password"
 				/>
 				<button type="submit">Log In &#8594;</button>
 			</form>
