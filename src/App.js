@@ -57,6 +57,7 @@ const App = () => {
 									<ShopDetails
 										shops={shops}
 										shopNum={shopNum}
+										user={user}
 									/>
 								}
 							/>
