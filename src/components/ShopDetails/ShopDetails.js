@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./ShopDetails.css";
+import ShopReview from "./ShopReview";
 
 export const ShopDetails = ({ shops, shopNum }) => {
 	const [shop, setShop] = useState();
@@ -46,6 +47,7 @@ export const ShopDetails = ({ shops, shopNum }) => {
 
 					<div>
 						<h2>Reviews</h2>
+						<ShopReview />
 						{reviews.map((review) => (
 							<div key={review._id}>
 								<h4>{review.username}</h4>
