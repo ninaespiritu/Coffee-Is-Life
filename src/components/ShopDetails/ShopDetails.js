@@ -5,10 +5,32 @@ import ShopReview from "./ShopReview";
 export const ShopDetails = ({ shops, shopNum }) => {
 	const [shop, setShop] = useState();
 	const [reviews, setReviews] = useState([]);
+	const [newReviews, setNewReviews] = useState([]);
 
 	useEffect(() => {
 		fetchShop();
+		fetchReview();
 	}, []);
+
+	const fetchReview = async () => {
+		try {
+			const response = await fetch(
+				`${process.env.REACT_APP_REST_API}findShop`,
+				{
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						name: shops[shopNum].name,
+					}),
+				}
+			);
+			const data = await response.json();
+			console.log(data.reviews);
+			setNewReviews(data.reviews);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	const fetchShop = async () => {
 		try {
@@ -49,6 +71,13 @@ export const ShopDetails = ({ shops, shopNum }) => {
 						<h2>Reviews</h2>
 						<ShopReview />
 						{reviews.map((review) => (
+							<div key={review._id}>
+								<h4>{review.username}</h4>
+								<p>{review.text}</p>
+								<p>Rating: {review.rating} out of 10</p>
+							</div>
+						))}
+						{newReviews.map((review) => (
 							<div key={review._id}>
 								<h4>{review.username}</h4>
 								<p>{review.text}</p>
