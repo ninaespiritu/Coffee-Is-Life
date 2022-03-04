@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./ShopDetails.css";
 import ShopReview from "./ShopReview";
 
-export const ShopDetails = ({ shops, shopNum }) => {
+export const ShopDetails = ({ shops, shopNum, user }) => {
 	const [shop, setShop] = useState();
 	const [reviews, setReviews] = useState([]);
 	const [newReviews, setNewReviews] = useState([]);
@@ -66,10 +66,9 @@ export const ShopDetails = ({ shops, shopNum }) => {
 					<div className="shop-img">
 						<img src={shop.url} alt="" />
 					</div>
-
+					<ShopReview shops={shops} shopNum={shopNum} user={user} />
 					<div>
 						<h2>Reviews</h2>
-						<ShopReview />
 						{reviews.map((review) => (
 							<div key={review._id}>
 								<h4>{review.username}</h4>
