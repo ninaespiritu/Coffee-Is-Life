@@ -18,6 +18,7 @@ export const Signup = ({ props }) => {
 				<input
 					onChange={(e) => props.setPassword(e.target.value)}
 					placeholder="Password"
+					type="password"
 				/>
 				<button type="submit">Sign Up &#8594;</button>
 			</form>

@@ -11,14 +11,16 @@ export const Navbar = ({ props }) => {
 		<nav className="navbar">
 			<ul className={click ? "nav-menu active" : "nav-menu"}>
 				<Link to="/" style={{ textDecoration: "none" }}>
-					<li className="nav-item">Home</li>
+					<li className="nav-item" onClick={handleClick}>
+						Home
+					</li>
 				</Link>
 				<Link to="/profile" style={{ textDecoration: "none" }}>
-					<li className="nav-item">Profile</li>
+					<li className="nav-item" onClick={handleClick}>
+						Profile
+					</li>
 				</Link>
-				<li>
-					<button onClick={props.handleLogout}>Logout</button>
-				</li>
+				<li className="nav-item" onClick={props.handleLogout}>Logout</li>
 			</ul>
 			<div className="hamburger" onClick={handleClick}>
 				{click ? "✖" : "Menu"}
