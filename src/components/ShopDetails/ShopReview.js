@@ -23,6 +23,8 @@ export default function ShopReview({ shops, shopNum, user }) {
 			);
 			const data = await response.json();
 			console.log(data);
+			setText("");
+			setRating("");
 		} catch (error) {
 			console.log(error);
 		}
@@ -34,7 +36,7 @@ export default function ShopReview({ shops, shopNum, user }) {
 			<form onSubmit={handleSubmit}>
 				<label>
 					Already visited this shop? Share your thoughts and write
-					your review below.
+					your review below.*
 				</label>
 				<textarea
 					type="text"
