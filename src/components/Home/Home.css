@@ -135,17 +135,37 @@
 }
 
 @media screen and (max-width: 800px) {
+	.header-text {
+		margin: 0 20px;
+		padding: 60px;
+		width: 100%;
+	}
+	.header-text h1 {
+		font-size: 60px;
+	}
 	.grid {
 		gap: 25px;
 	}
 }
 
 @media screen and (max-width: 600px) {
+	.header-text {
+		padding: 40px;
+	}
+	.header-text h1 {
+		font-size: 44px;
+	}
+	.browse h2 {
+		font-size: 32px;
+	}
 	.browse {
 		margin: 20px;
 	}
 	.grid {
 		grid-template-columns: repeat(1, auto);
+	}
+	.shops-info h3 {
+		font-size: 16px;
 	}
 	.shops-img {
 		height: 250px;

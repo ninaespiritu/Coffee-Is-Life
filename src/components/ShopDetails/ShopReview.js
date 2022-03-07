@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import "./ShopDetails.css";
 
 export default function ShopReview({ shops, shopNum, user }) {
-	// const [username, setUsername] = useState("");
 	const [text, setText] = useState("");
-	// const [coffeeshopname, setCoffeeShopName] = useState("");
 	const [rating, setRating] = useState("");
 
 	const handleSubmit = async (e) => {
@@ -30,23 +29,23 @@ export default function ShopReview({ shops, shopNum, user }) {
 	};
 
 	return (
-		<div>
+		<div className="add-review-box">
 			<h2>Add a review</h2>
 			<form onSubmit={handleSubmit}>
 				<label>
 					Already visited this shop? Share your thoughts and write
 					your review below.
 				</label>
-				<input
+				<textarea
 					type="text"
-					placeholder="About it"
+					placeholder="Your review"
 					value={text}
 					required
 					onChange={(e) => setText(e.target.value)}
 				/>
 				<input
 					type="text"
-					placeholder="Rating"
+					placeholder="Your rating (1 - 10)"
 					value={rating}
 					required
 					onChange={(e) => setRating(e.target.value)}

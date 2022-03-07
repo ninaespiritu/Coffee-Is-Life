@@ -17,7 +17,7 @@
 	--text-light: #f3f3f3;
 	--text-dark: #2a1b16;
 	--text-grey: #8e9291;
-	--text-greylight: #cacaca;
+	--text-greylight: #dbdbdb;
 }
 
 * {
@@ -120,5 +120,14 @@ button {
 	h1 {
 		font-size: 40px;
 		margin: 0 0 20px;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	h1 {
+		font-size: 32px;
+	}
+	p {
+		font-size: 15px;
 	}
 }
