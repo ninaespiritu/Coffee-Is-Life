@@ -10,7 +10,7 @@ export const ShopDetails = ({ shops, shopNum, user }) => {
 	useEffect(() => {
 		fetchShop();
 		fetchReview();
-	}, []);
+	}, [newReviews]);
 
 	const fetchReview = async () => {
 		try {
