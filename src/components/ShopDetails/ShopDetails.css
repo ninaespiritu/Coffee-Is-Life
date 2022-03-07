@@ -11,6 +11,7 @@
 
 .shop-header-text {
 	width: var(--app-width);
+	color: var(--text-dark);
 }
 
 .shop-header-text h4 {
@@ -160,12 +161,24 @@
 }
 
 .review h4 {
-	margin: 0 0 5px;
+	margin: 0 0 0 12px;
 	font-size: 17px;
 }
 
 .review p span {
 	font-weight: 600;
+}
+
+.review-user {
+	margin: 0 0 5px;
+	display: flex;
+	align-items: center;
+}
+
+.review-icons {
+	margin: 0 0 0 5px;
+	transform: scale(1.5);
+	color: var(--text-grey);
 }
 
 /* ========== MEDIA QUERIES ========== */

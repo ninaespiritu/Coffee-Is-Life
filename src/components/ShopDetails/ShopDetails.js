@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import "./ShopDetails.css";
 import ShopReview from "./ShopReview";
 
@@ -54,6 +56,10 @@ export const ShopDetails = ({ shops, shopNum, user }) => {
 		}
 	};
 
+	const userAvatar = (
+		<FontAwesomeIcon icon={faCircleUser} className="review-icons" />
+	);
+
 	return (
 		<div className="shopdetails">
 			{shop && (
@@ -94,7 +100,10 @@ export const ShopDetails = ({ shops, shopNum, user }) => {
 								<h2>Reviews</h2>
 								{reviews.map((review) => (
 									<div key={review._id} className="review">
-										<h4>{review.username}</h4>
+										<div className="review-user">
+											<div>{userAvatar}</div>
+											<h4>{review.username}</h4>
+										</div>
 										<p>
 											<span>
 												Rating: {review.rating}/10
@@ -105,7 +114,10 @@ export const ShopDetails = ({ shops, shopNum, user }) => {
 								))}
 								{newReviews.map((review) => (
 									<div key={review._id} className="review">
-										<h4>{review.username}</h4>
+										<div className="review-user">
+											<div>{userAvatar}</div>
+											<h4>{review.username}</h4>
+										</div>
 										<p>
 											<span>
 												Rating: {review.rating}/10

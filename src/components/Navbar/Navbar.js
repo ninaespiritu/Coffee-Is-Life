@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import "./Navbar.css";
 
 export const Navbar = ({ props }) => {
@@ -20,10 +22,23 @@ export const Navbar = ({ props }) => {
 						Profile
 					</li>
 				</Link>
-				<li className="nav-item" onClick={props.handleLogout}>Logout</li>
+				<li className="nav-item" onClick={props.handleLogout}>
+					Logout
+				</li>
 			</ul>
 			<div className="hamburger" onClick={handleClick}>
-				{click ? "✖" : "Menu"}
+				{click ? (
+					<div>
+						<FontAwesomeIcon
+							icon={faXmark}
+							className="nav-icons active"
+						/>
+					</div>
+				) : (
+					<div>
+						<FontAwesomeIcon icon={faBars} className="nav-icons" />
+					</div>
+				)}
 			</div>
 		</nav>
 	);
