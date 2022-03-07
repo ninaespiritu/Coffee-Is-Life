@@ -23,6 +23,32 @@
 	letter-spacing: 1.5px;
 }
 
+.shop-rating {
+	margin: -16px 0 20px;
+	display: flex;
+	align-items: center;
+}
+
+.shop-rating p {
+	font-size: 20px;
+	font-weight: 800;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+}
+
+.shop-rating p span {
+	font-size: 16px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+}
+
+.star-icon {
+	margin: 0 8px 0 0;
+	/* transform: scale(1.5); */
+	color: var(--bg-orange);
+}
+
 .shop-info {
 	padding: 40px 0;
 	color: var(--text-light);

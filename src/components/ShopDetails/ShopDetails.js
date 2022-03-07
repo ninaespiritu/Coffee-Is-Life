@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { faCircleUser, faStar } from "@fortawesome/free-solid-svg-icons";
 import "./ShopDetails.css";
 import ShopReview from "./ShopReview";
 
@@ -12,7 +12,7 @@ export const ShopDetails = ({ shops, shopNum, user }) => {
 	useEffect(() => {
 		fetchShop();
 		fetchReview();
-	}, [newReviews]);
+	}, []);
 
 	const fetchReview = async () => {
 		try {
@@ -56,8 +56,35 @@ export const ShopDetails = ({ shops, shopNum, user }) => {
 		}
 	};
 
+	// SUM (OLD REVIEW RATINGS)
+	let sumRating = 0;
+	let itemRating = null;
+
+	for (let i = 0; i < reviews.length; i++) {
+		itemRating = reviews[i];
+		sumRating = itemRating.rating + sumRating;
+	}
+
+	// SUM (NEW REVIEW RATINGS)
+	let sumNewRating = 0;
+	let newRating = null;
+
+	for (let i = 0; i < newReviews.length; i++) {
+		newRating = newReviews[i];
+		sumNewRating = newRating.rating + sumNewRating;
+	}
+
+	// AVERAGE RATING
+	const reviewsAll = reviews.length + newReviews.length;
+	const averageAll = ((sumRating + sumNewRating) / reviewsAll).toFixed(2);
+	console.log(averageAll);
+
+	// ICONS
 	const userAvatar = (
 		<FontAwesomeIcon icon={faCircleUser} className="review-icons" />
+	);
+	const reviewStar = (
+		<FontAwesomeIcon icon={faStar} className="star-icon" size="lg" />
 	);
 
 	return (
@@ -68,6 +95,13 @@ export const ShopDetails = ({ shops, shopNum, user }) => {
 						<div className="shop-header-text">
 							<h4>Shop Details</h4>
 							<h1>{shop.name}</h1>
+							<div className="shop-rating">
+								{reviewStar}
+								<p>
+									{averageAll}{" "}
+									<span>({reviewsAll} Reviews)</span>
+								</p>
+							</div>
 						</div>
 					</div>
 
