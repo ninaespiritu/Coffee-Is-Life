@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import { fetchLogin, fetchSignup } from "./utils";
+import { fetchLogin, fetchSignup, tokenFetch } from "./utils";
 import { Signup } from "./components/Signup/Signup";
 import { Login } from "./components/Login/Login";
 import { Home } from "./components/Home/Home";
@@ -18,6 +18,10 @@ const App = () => {
 	const [shops, setShops] = useState([]);
 	const [shopNum, setShopNum] = useState();
 
+	useEffect(() => {
+		tokenFetch(setUser)
+	}, []);
+
 	const handleSignup = async (e) => {
 		e.preventDefault();
 		fetchSignup(setUser, email, username, password);
@@ -32,6 +36,7 @@ const App = () => {
 		if (user) {
 			setUser(null);
 		}
+
 	};
 
 	return (
@@ -80,7 +85,7 @@ const App = () => {
 									handleSignup,
 									setEmail,
 									setUsername,
-									setPassword,
+									setPassword
 								}}
 							/>
 						</div>
@@ -89,7 +94,7 @@ const App = () => {
 								props={{
 									handleLogin,
 									setUsername,
-									setPassword,
+									setPassword
 								}}
 							/>
 						</div>
