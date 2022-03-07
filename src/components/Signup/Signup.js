@@ -1,6 +1,16 @@
 import "./Signup.css";
 
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+const eye = <FontAwesomeIcon icon={faEye} />;
+
 export const Signup = ({ props }) => {
+	const [passwordShown, setPasswordShown] = useState(false);
+
+	const togglePasswordVisibility = () => {
+		setPasswordShown(passwordShown ? false : true);
+	};
 	return (
 		<div className="signup">
 			<h1>Create an account</h1>
@@ -18,8 +28,11 @@ export const Signup = ({ props }) => {
 				<input
 					onChange={(e) => props.setPassword(e.target.value)}
 					placeholder="Password"
-					type="password"
+					type={passwordShown ? "text" : "password"}
 				/>
+				<div>
+					<i onClick={togglePasswordVisibility}>{eye}</i>
+				</div>
 				<button type="submit">Sign Up &#8594;</button>
 			</form>
 		</div>
