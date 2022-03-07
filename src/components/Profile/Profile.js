@@ -36,6 +36,7 @@ export const Profile = ({ user }) => {
 			<h2>User Reviews</h2>
 			{reviews.map((review) => (
 				<div key={review._id}>
+					<h4>{review.name}</h4>
 					<p>{review.text}</p>
 					<p>Rating: {review.rating} out of 10</p>
 				</div>
