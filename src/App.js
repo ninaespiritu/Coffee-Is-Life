@@ -68,7 +68,7 @@ const App = () => {
 							/>
 							<Route
 								path="/profile"
-								element={<Profile user={user} />}
+								element={<Profile user={user} props={{ handleLogout }} />}
 							/>
 						</Routes>
 					</Router>

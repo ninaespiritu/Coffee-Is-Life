@@ -1,45 +1,106 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import Avatar from "../../images/profile-avatar.jpg";
+import "../ShopDetails/ShopDetails.css";
+import "./Profile.css";
 
-export const Profile = ({ user }) => {
-	const [ reviews, setReview] = useState([]);
+export const Profile = ({ user, props }) => {
+	const [reviews, setReview] = useState([]);
 
 	useEffect(() => {
 		viewReviews();
-	},[]);
+	}, []);
 
 	const viewReviews = async () => {
 		try {
-			const response = await fetch(`${process.env.REACT_APP_REST_API}findUser`,
-			{
-				method: "POST",
-				headers: { "Content-Type": "application/json"},
-				body: JSON.stringify({
-				username: user.user.username
-				})
-			})
-		
-		const reviewData = await response.json();
-		console.log("error2")
-		console.log(reviewData.reviews)
-		setReview(reviewData.reviews)
+			const response = await fetch(
+				`${process.env.REACT_APP_REST_API}findUser`,
+				{
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						username: user.user.username,
+					}),
+				}
+			);
+
+			const data = await response.json();
+			console.log(data.reviews);
+			setReview(data.reviews);
 		} catch (error) {
 			console.log(error);
 		}
-	}
+	};
 
+	// AVERAGE RATING
+	let myRatingSum = 0;
+	let myRating = null;
+
+	for (let i = 0; i < reviews.length; i++) {
+		myRating = reviews[i];
+		myRatingSum = myRating.rating + myRatingSum;
+	}
+	const myRatingAverage = (myRatingSum / reviews.length).toFixed(2);
+	console.log(myRatingAverage);
+
+	// ICONS
+	const reviewStar = <FontAwesomeIcon icon={faStar} className="star-icon" />;
 
 	return (
-		<div>
-			<h1>Profile</h1>
-			<h2>{user ? user.user.username : "Not logged in"}</h2>
-			<button onClick={viewReviews}></button>
-			<h2>User Reviews</h2>
-			{reviews.map((review) => (
-				<div key={review._id}>
-					<p>{review.text}</p>
-					<p>Rating: {review.rating} out of 10</p>
+		<div className="profile">
+			<div className="profile-box">
+				<div className="profile-header">
+					<div className="profile-img">
+						<img src={Avatar} alt="" />
+					</div>
+					<div className="profile-header-text">
+						<h1>{user ? user.user.username : "Not logged in"}</h1>
+						<p>{user.user.email}</p>
+						<button>Edit Profile</button>
+						<Link to="/">
+							<button onClick={props.handleLogout}>Logout</button>
+						</Link>
+					</div>
 				</div>
-			))}
+
+				<div className="info">
+					<div className="sidebar">
+						<div className="sidebar-contributions">
+							<h4>Contributions</h4>
+							<h3>
+								<span>{reviews.length}</span> Total Reviews
+							</h3>
+							<h3>
+								<span>{myRatingAverage}</span> Average Rating
+							</h3>
+						</div>
+						<div>
+							<h4>About</h4>
+							<p>
+								Go to Edit Profile to update your About section.
+							</p>
+						</div>
+					</div>
+
+					<div className="my-reviews">
+						<h2>My Reviews</h2>
+						{reviews.map((review) => (
+							<div key={review._id} className="my-review">
+								<div className="my-review-user">
+									<div>{reviewStar}</div>
+									<h4>{review.name}</h4>
+								</div>
+								<p>
+									<span>Rating: {review.rating}/10</span>
+								</p>
+								<p>{review.text}</p>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 };
