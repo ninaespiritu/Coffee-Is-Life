@@ -5,8 +5,9 @@
 }
 
 .header {
+	margin-top: 70px;
 	width: 100%;
-	min-height: 100vh;
+	min-height: calc(100vh - 70px);
 	background-image: url("../../images/home-header.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
