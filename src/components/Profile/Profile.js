@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import Avatar from "../../images/profile-avatar.jpg";
 import "../ShopDetails/ShopDetails.css";
 import "./Profile.css";
@@ -67,6 +67,7 @@ export const Profile = ({ user, props }) => {
 
 	// ICONS
 	const reviewStar = <FontAwesomeIcon icon={faStar} className="star-icon" />;
+	const reviewBin = <FontAwesomeIcon icon={faTrashCan} className="bin-icon" />;
 
 	return (
 		<div className="profile">
@@ -109,10 +110,12 @@ export const Profile = ({ user, props }) => {
 						{reviews.map((review) => (
 							<div key={review._id} className="my-review">
 								<div className="my-review-user">
-									<div>{reviewStar}</div>
-									<h4>{review.name}</h4>
+									<div className="my-review-header">
+										<div>{reviewStar}</div>
+										<h4>{review.name}</h4>
+									</div>	
 									<button onClick={() => deleteReview(review._id)}>
-										Delete
+										Delete {reviewBin}
 									</button>
 								</div>
 								<p>
