@@ -12,20 +12,28 @@ import { LandingPage } from "./components/LandingPage/LandingPage";
 
 const App = () => {
 	const [user, setUser] = useState();
-	const [email, setEmail] = useState();
-	const [username, setUsername] = useState();
-	const [password, setPassword] = useState();
+	const [email, setEmail] = useState("");
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
 	const [shops, setShops] = useState([]);
 	const [shopNum, setShopNum] = useState();
 
 	const handleSignup = async (e) => {
 		e.preventDefault();
-		fetchSignup(setUser, email, username, password);
+		if (!email || !username || !password) {
+			return !user && alert("Invalid signup request. Please try again.");
+		} else {
+			fetchSignup(setUser, email, username, password);
+		}
 	};
 
 	const handleLogin = async (e) => {
 		e.preventDefault();
-		fetchLogin(setUser, username, password);
+		if (!username || !password) {
+			return !user && alert("Invalid login request. Please try again.");
+		} else {
+			fetchLogin(setUser, username, password);
+		}
 	};
 
 	const handleLogout = async () => {
@@ -63,7 +71,12 @@ const App = () => {
 							/>
 							<Route
 								path="/profile"
-								element={<Profile user={user} props={{ handleLogout }} />}
+								element={
+									<Profile
+										user={user}
+										props={{ handleLogout }}
+									/>
+								}
 							/>
 						</Routes>
 					</Router>
@@ -71,7 +84,7 @@ const App = () => {
 			) : (
 				<div className="welcome">
 					<div className="welcome-landing">
-					<LandingPage />
+						<LandingPage />
 					</div>
 					<div id="getstarted" className="getstarted">
 						<div className="getstarted-signup">
