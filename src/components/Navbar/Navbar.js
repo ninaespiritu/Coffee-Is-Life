@@ -22,9 +22,11 @@ export const Navbar = ({ props }) => {
 						Profile
 					</li>
 				</Link>
-				<li className="nav-item" onClick={props.handleLogout}>
-					Logout
-				</li>
+				<Link to="/" style={{ textDecoration: "none" }}>
+					<li className="nav-item" onClick={props.handleLogout}>
+						Logout
+					</li>
+				</Link>
 			</ul>
 			<div className="hamburger" onClick={handleClick}>
 				{click ? (
