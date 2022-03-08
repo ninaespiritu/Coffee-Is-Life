@@ -11,6 +11,7 @@
 
 .shop-header-text {
 	width: var(--app-width);
+	color: var(--text-dark);
 }
 
 .shop-header-text h4 {
@@ -20,6 +21,32 @@
 	/* font-family: var(--font-title); */
 	text-transform: uppercase;
 	letter-spacing: 1.5px;
+}
+
+.shop-rating {
+	margin: -16px 0 20px;
+	display: flex;
+	align-items: center;
+}
+
+.shop-rating p {
+	font-size: 20px;
+	font-weight: 800;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+}
+
+.shop-rating p span {
+	font-size: 16px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+}
+
+.star-icon {
+	margin: 0 8px 0 0;
+	/* transform: scale(1.5); */
+	color: var(--bg-orange);
 }
 
 .shop-info {
@@ -160,12 +187,24 @@
 }
 
 .review h4 {
-	margin: 0 0 5px;
+	margin: 0 0 0 12px;
 	font-size: 17px;
 }
 
 .review p span {
 	font-weight: 600;
+}
+
+.review-user {
+	margin: 0 0 5px;
+	display: flex;
+	align-items: center;
+}
+
+.review-icons {
+	margin: 0 0 0 5px;
+	transform: scale(1.5);
+	color: var(--text-grey);
 }
 
 /* ========== MEDIA QUERIES ========== */

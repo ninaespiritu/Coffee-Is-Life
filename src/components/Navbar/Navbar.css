@@ -9,7 +9,7 @@
     align-items: center;
     width: 100vw;
     height: 70px;
-    padding: 1.5rem;
+    padding: 2rem;
     background: var(--bg-light);
     box-shadow: 0 0px 40px rgba(0, 0, 0, 0.075);
 }
@@ -48,6 +48,16 @@
     cursor: pointer;
 }
 
+.nav-icons {
+    transform: scale(1.25);
+    color: var(--text-dark);
+    transition: transform 0.35s, color 0.35s;
+}
+.nav-icons.active {
+    transform: scale(1.5);
+    color: var(--text-light);
+}
+
 @media screen and (max-width: 1000px) {
     .nav-menu {
         position: fixed;
@@ -59,7 +69,7 @@
         min-height: 100vh;
         text-align: center;
         background: var(--bg-orange);
-        transition: 0.5s;
+        transition: 0.35s;
     }
 
     .nav-menu.active {
