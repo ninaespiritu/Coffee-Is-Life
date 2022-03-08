@@ -67,7 +67,9 @@ export const Profile = ({ user, props }) => {
 
 	// ICONS
 	const reviewStar = <FontAwesomeIcon icon={faStar} className="star-icon" />;
-	const reviewBin = <FontAwesomeIcon icon={faTrashCan} className="bin-icon" />;
+	const reviewBin = (
+		<FontAwesomeIcon icon={faTrashCan} className="bin-icon" />
+	);
 
 	return (
 		<div className="profile">
@@ -90,12 +92,20 @@ export const Profile = ({ user, props }) => {
 					<div className="sidebar">
 						<div className="sidebar-contributions">
 							<h4>Contributions</h4>
-							<h3>
-								<span>{reviews.length}</span> Total Reviews
-							</h3>
-							<h3>
-								<span>{myRatingAverage}</span> Average Rating
-							</h3>
+							{reviews.length === 0 ? (
+								<h3>No reviews posted</h3>
+							) : (
+								<div>
+									<h3>
+										<span>{reviews.length}</span> Total
+										Reviews
+									</h3>
+									<h3>
+										<span>{myRatingAverage}</span> Average
+										Rating
+									</h3>
+								</div>
+							)}
 						</div>
 						<div>
 							<h4>About</h4>
@@ -107,23 +117,35 @@ export const Profile = ({ user, props }) => {
 
 					<div className="my-reviews">
 						<h2>My Reviews</h2>
-						{reviews.map((review) => (
-							<div key={review._id} className="my-review">
-								<div className="my-review-user">
-									<div className="my-review-header">
-										<div>{reviewStar}</div>
-										<h4>{review.name}</h4>
-									</div>	
-									<button onClick={() => deleteReview(review._id)}>
-										Delete {reviewBin}
-									</button>
-								</div>
-								<p>
-									<span>Rating: {review.rating}/10</span>
-								</p>
-								<p>{review.text}</p>
+						{reviews.length === 0 ? (
+							"You have not published any reviews. Write your first review today!"
+						) : (
+							<div>
+								{reviews.map((review) => (
+									<div key={review._id} className="my-review">
+										<div className="my-review-user">
+											<div className="my-review-header">
+												<div>{reviewStar}</div>
+												<h4>{review.name}</h4>
+											</div>
+											<button
+												onClick={() =>
+													deleteReview(review._id)
+												}
+											>
+												Delete {reviewBin}
+											</button>
+										</div>
+										<p>
+											<span>
+												Rating: {review.rating}/10
+											</span>
+										</p>
+										<p>{review.text}</p>
+									</div>
+								))}
 							</div>
-						))}
+						)}
 					</div>
 				</div>
 			</div>
