@@ -65,7 +65,5 @@ export const tokenFetch = async (setUser) => {
 		setUser(data.user);
 	} catch (error) {
 		console.error(error);
-
-
 	}
 }

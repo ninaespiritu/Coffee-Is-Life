@@ -14,7 +14,7 @@ export const Profile = ({ user }) => {
 				method: "POST",
 				headers: { "Content-Type": "application/json"},
 				body: JSON.stringify({
-					username: user.user.username
+				username: user.user.username
 				})
 			})
 		
