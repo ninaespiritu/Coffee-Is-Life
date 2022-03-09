@@ -2,14 +2,17 @@ import "./Signup.css";
 
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 const eye = <FontAwesomeIcon icon={faEye} />;
+const eye2 = <FontAwesomeIcon icon={faEyeSlash} />;
 
 export const Signup = ({ props }) => {
 	const [passwordShown, setPasswordShown] = useState(false);
+	const [showEye, setShowEye] = useState(true);
 
 	const togglePasswordVisibility = () => {
 		setPasswordShown(passwordShown ? false : true);
+		setShowEye(!showEye);
 	};
 	return (
 		<div className="signup">
@@ -31,7 +34,7 @@ export const Signup = ({ props }) => {
 					type={passwordShown ? "text" : "password"}
 				/>
 				<div>
-					<i onClick={togglePasswordVisibility}>{eye}</i>
+					<i onClick={togglePasswordVisibility}>{showEye ? eye2 : eye}</i>
 				</div>
 				<button type="submit">Sign Up &#8594;</button>
 			</form>
