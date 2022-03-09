@@ -37,12 +37,12 @@ export default function ShopReview({ shops, shopNum, user, fetchReview }) {
 			<form onSubmit={handleSubmit}>
 				<label>
 					Already visited this shop? Share your thoughts and write
-					your review below.*
+					your review below.
 				</label>
 				<textarea
 					type="text"
 					placeholder="Your review"
-					maxlength="1000"
+					maxLength="1000"
 					value={text}
 					required
 					onChange={(e) => setText(e.target.value)}

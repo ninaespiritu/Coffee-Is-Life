@@ -8,12 +8,13 @@ import "./Profile.css";
 
 export const Profile = ({ user, props }) => {
 	const [reviews, setReviews] = useState([]);
+	const [favShops, setFavShops] = useState([]);
 
 	useEffect(() => {
-		viewReviews();
+		viewProfile();
 	}, []);
 
-	const viewReviews = async () => {
+	const viewProfile = async () => {
 		try {
 			const response = await fetch(
 				`${process.env.REACT_APP_REST_API}findUser`,
@@ -26,8 +27,9 @@ export const Profile = ({ user, props }) => {
 				}
 			);
 			const data = await response.json();
-			console.log(data.reviews);
+			console.log(data);
 			setReviews(data.reviews);
+			setFavShops(data.favourites);
 		} catch (error) {
 			console.log(error);
 		}
@@ -47,7 +49,7 @@ export const Profile = ({ user, props }) => {
 			);
 			const data = await response.json();
 			console.log(data.removeReview);
-			viewReviews();
+			viewProfile();
 		} catch (error) {
 			console.log(error);
 		}
@@ -62,7 +64,7 @@ export const Profile = ({ user, props }) => {
 		myRatingSum = myRating.rating + myRatingSum;
 	}
 	const myRatingAverage = (myRatingSum / reviews.length).toFixed(2);
-	console.log(myRatingAverage);
+	// console.log(myRatingAverage);
 
 	// ICONS
 	const reviewStar = <FontAwesomeIcon icon={faStar} className="star-icon" />;
@@ -107,10 +109,16 @@ export const Profile = ({ user, props }) => {
 							)}
 						</div>
 						<div>
-							<h4>About</h4>
-							<p>
-								Go to Edit Profile to update your About section.
-							</p>
+							<h4>Favourites</h4>
+							<div>
+								{favShops.map((fav) => (
+									<div key={fav._id}>
+										<h3>{fav.name}</h3>
+										<p>{fav.average}</p>
+										<button>Remove from Favourites</button>
+									</div>
+								))}
+							</div>
 						</div>
 					</div>
 
