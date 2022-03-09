@@ -6,7 +6,12 @@ import "./Home.css";
 export const Home = ({ shops, setShops, setShopNum }) => {
 	useEffect(() => {
 		fetchShops(setShops);
+		scrollToTop();
 	}, []);
+
+	const scrollToTop = () => {
+		window.scrollTo(0, 0);
+	};
 
 	return (
 		<div className="home">
