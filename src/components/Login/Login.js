@@ -23,11 +23,14 @@ export const Login = ({ props }) => {
 				<input
 					onChange={(e) => props.setUsername(e.target.value)}
 					placeholder="Username"
+					type="text"
+					required
 				/>
 				<input
 					onChange={(e) => props.setPassword(e.target.value)}
 					placeholder="Password"
 					type={passwordShown ? "text" : "password"}
+					required
 				/>
 				<div>
 					<i onClick={togglePasswordVisibility}>{showEye ? eye2 : eye}</i>
