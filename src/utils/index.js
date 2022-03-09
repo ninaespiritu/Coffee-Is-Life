@@ -32,7 +32,7 @@ export const fetchLogin = async (setUser, username, password) => {
 		});
 		const data = await response.json();
 		console.log(data);
-		setUser(data.user);
+		setUser(data);
 		localStorage.setItem("myToken", data.token)
 	} catch (error) {
 		console.log(error);
@@ -57,7 +57,7 @@ export const fetchShops = async (setShops) => {
 export const tokenFetch = async (setUser) => {
 	try {
 		const token = localStorage.getItem("myToken");
-		const response = await fetch(`${process.env.REACT_APP_REST_API}token`, { 
+		const response = await fetch(`http://localhost:5001/token`, { 
 			method: "GET", 
 			headers: { "Authorization": `Bearer ${token}`}
 		});

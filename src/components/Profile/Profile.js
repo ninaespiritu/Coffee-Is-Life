@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faTrashCan, faPen } from "@fortawesome/free-solid-svg-icons";
 import Avatar from "../../images/profile-avatar.jpg";
 import "../ShopDetails/ShopDetails.css";
 import "./Profile.css";
+import Modal from "./ProfileModal"
 
 export const Profile = ({ user, props }) => {
 	const [reviews, setReview] = useState([]);
+	const [isOpen, setIsOpen] = useState(false)
 
 	useEffect(() => {
 		viewReviews();
@@ -33,6 +35,29 @@ export const Profile = ({ user, props }) => {
 			console.log(error);
 		}
 	};
+
+	const updateReview = async (req, res) => {
+		try {
+			const response = await fetch(
+				`${process.env.REACT_APP_REST_API}review` ,
+				{     
+					method: "PUT", 
+					headers: { "content-Type": "application/json"},
+					body: JSON.stringify({ 
+						username: user.user.username,
+						name: user.user.newName,
+						text: user.user.newText,
+						rating: user.user.newRating
+					})
+			}
+			)
+			const data = await response.json();
+			console.log(data.reviews)
+			setReview(data.reviews)
+		} catch (error){
+			console.log(error);
+		}
+	}
 
 	const deleteReview = async (props) => {
 		try {
@@ -68,6 +93,7 @@ export const Profile = ({ user, props }) => {
 	// ICONS
 	const reviewStar = <FontAwesomeIcon icon={faStar} className="star-icon" />;
 	const reviewBin = <FontAwesomeIcon icon={faTrashCan} className="bin-icon" />;
+	const reviewEdit = <FontAwesomeIcon icon={faPen} className="pen-icon" />
 
 	return (
 		<div className="profile">
@@ -117,6 +143,14 @@ export const Profile = ({ user, props }) => {
 									<button onClick={() => deleteReview(review._id)}>
 										Delete {reviewBin}
 									</button>
+									
+									<button onClick={() => setIsOpen(true)}>
+										Edit {reviewEdit}
+									</button>
+									<Modal open={isOpen} onClose={() => setIsOpen(false)}>
+										Fancy model
+									</Modal>
+									
 								</div>
 								<p>
 									<span>Rating: {review.rating}/10</span>
