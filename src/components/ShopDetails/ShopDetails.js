@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faStar } from "@fortawesome/free-solid-svg-icons";
 import "./ShopDetails.css";
 import ShopReview from "./ShopReview";
+import { fetchShop, fetchReview } from "../../utils";
 
 export const ShopDetails = ({ shops, shopNum, user }) => {
 	const [shop, setShop] = useState();
@@ -10,7 +11,7 @@ export const ShopDetails = ({ shops, shopNum, user }) => {
 	const [newReviews, setNewReviews] = useState([]);
 
 	useEffect(() => {
-		fetchShop();
+		fetchShop(shops, shopNum, setShop, setReviews);
 		fetchReview();
 	}, []);
 
@@ -29,28 +30,6 @@ export const ShopDetails = ({ shops, shopNum, user }) => {
 			const data = await response.json();
 			console.log(data.reviews);
 			setNewReviews(data.reviews);
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
-	const fetchShop = async () => {
-		try {
-			const response = await fetch(
-				`${process.env.REACT_APP_REST_API}shop/details`,
-				{
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({
-						name: shops[shopNum].name,
-					}),
-				}
-			);
-			const data = await response.json();
-			console.log(data.shop);
-			console.log(data.shop.reviews);
-			setShop(data.shop);
-			setReviews(data.shop.reviews);
 		} catch (error) {
 			console.log(error);
 		}
@@ -127,6 +106,7 @@ export const ShopDetails = ({ shops, shopNum, user }) => {
 									shops={shops}
 									shopNum={shopNum}
 									user={user}
+									fetchReview={fetchReview}
 								/>
 							</div>
 

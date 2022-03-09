@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./ShopDetails.css";
 
-export default function ShopReview({ shops, shopNum, user }) {
+export default function ShopReview({ shops, shopNum, user, fetchReview }) {
 	const [text, setText] = useState("");
 	const [rating, setRating] = useState("");
 
@@ -25,6 +25,7 @@ export default function ShopReview({ shops, shopNum, user }) {
 			console.log(data);
 			setText("");
 			setRating("");
+			fetchReview();
 		} catch (error) {
 			console.log(error);
 		}
