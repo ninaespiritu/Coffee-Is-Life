@@ -90,21 +90,9 @@
 
 .shops-info h3 {
 	margin: 0 0 4px;
-	font-size: 20px;
+	/* font-size: 20px; */
 	font-weight: 700;
 	/* font-family: var(--font-title); */
-}
-
-.shops-info h4 {
-	margin: 8px 0 0;
-	padding: 4px 8px;
-	width: 100px;
-	color: var(--text-light);
-	font-size: 15px;
-	font-weight: 600;
-	text-align: center;
-	background-color: var(--bg-orangelight);
-	border-radius: 20px;
 }
 
 .shops-info p {
