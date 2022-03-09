@@ -42,13 +42,16 @@ export default function ShopReview({ shops, shopNum, user, fetchReview }) {
 				<textarea
 					type="text"
 					placeholder="Your review"
+					maxlength="1000"
 					value={text}
 					required
 					onChange={(e) => setText(e.target.value)}
 				/>
 				<input
-					type="text"
+					type="number"
 					placeholder="Your rating (1 - 10)"
+					min="1"
+					max="10"
 					value={rating}
 					required
 					onChange={(e) => setRating(e.target.value)}
