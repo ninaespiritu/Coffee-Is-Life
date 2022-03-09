@@ -7,7 +7,7 @@ import "../ShopDetails/ShopDetails.css";
 import "./Profile.css";
 
 export const Profile = ({ user, props }) => {
-	const [reviews, setReview] = useState([]);
+	const [reviews, setReviews] = useState([]);
 
 	useEffect(() => {
 		viewReviews();
@@ -25,10 +25,9 @@ export const Profile = ({ user, props }) => {
 					}),
 				}
 			);
-
 			const data = await response.json();
 			console.log(data.reviews);
-			setReview(data.reviews);
+			setReviews(data.reviews);
 		} catch (error) {
 			console.log(error);
 		}
@@ -46,9 +45,9 @@ export const Profile = ({ user, props }) => {
 					}),
 				}
 			);
-
 			const data = await response.json();
 			console.log(data.removeReview);
+			viewReviews();
 		} catch (error) {
 			console.log(error);
 		}
