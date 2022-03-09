@@ -54,7 +54,7 @@
 
 .login form button:hover {
     width: 150px;
-    color: var(--text-dark);
+    color: var(--bg-orange);
     background: var(--bg-light);
 }
 
