@@ -55,6 +55,26 @@ export const Profile = ({ user, props }) => {
 		}
 	};
 
+	const deleteFavShop = async (props) => {
+		try {
+			const response = await fetch(
+				`${process.env.REACT_APP_REST_API}favourites`,
+				{
+					method: "DELETE",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						_id: props,
+					}),
+				}
+			);
+			const data = await response.json();
+			console.log(data.removeFavShop);
+			viewProfile();
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	// AVERAGE RATING
 	let myRatingSum = 0;
 	let myRating = null;
@@ -110,15 +130,23 @@ export const Profile = ({ user, props }) => {
 						</div>
 						<div>
 							<h4>Favourites</h4>
-							<div>
-								{favShops.map((fav) => (
-									<div key={fav._id}>
-										<h3>{fav.name}</h3>
-										<p>{fav.average}</p>
-										<button>Remove from Favourites</button>
-									</div>
-								))}
-							</div>
+							{favShops.length === 0 ? (
+								<h3>No favourites</h3>
+							) : (
+								<div>
+									{favShops.map((fav) => (
+										<div key={fav._id}>
+											<h3>{fav.name}</h3>
+											<p>{fav.average}</p>
+											<button onClick={() =>
+												deleteFavShop(fav._id)
+											}>
+												Remove from Favourites
+											</button>
+										</div>
+									))}
+								</div>
+							)}
 						</div>
 					</div>
 
@@ -135,11 +163,9 @@ export const Profile = ({ user, props }) => {
 												<div>{reviewStar}</div>
 												<h4>{review.name}</h4>
 											</div>
-											<button
-												onClick={() =>
-													deleteReview(review._id)
-												}
-											>
+											<button onClick={() =>
+												deleteReview(review._id)
+											}>
 												Delete {reviewBin}
 											</button>
 										</div>
