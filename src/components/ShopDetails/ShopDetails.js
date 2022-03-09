@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faStar } from "@fortawesome/free-solid-svg-icons";
 import "./ShopDetails.css";
 import ShopReview from "./ShopReview";
-import { addFavShop, fetchShop } from "../../utils";
+import { fetchShop } from "../../utils";
 
 export const ShopDetails = ({ shops, shopNum, user, setFavShops }) => {
 	const [shop, setShop] = useState();
@@ -45,7 +45,8 @@ export const ShopDetails = ({ shops, shopNum, user, setFavShops }) => {
 					body: JSON.stringify({
 						username: user.user.username,
 						name: shops[shopNum].name,
-						average: averageAll,
+						rating: averageAll,
+						reviews: reviewsAll,
 						url: shops[shopNum].url,
 					}),
 				}
@@ -53,6 +54,7 @@ export const ShopDetails = ({ shops, shopNum, user, setFavShops }) => {
 			const data = await response.json();
 			console.log(data.newFavShop);
 			setFavShops(data.newFavShop);
+			alert(`${shops[shopNum].name} has been added to your Favourites.`)
 		} catch (error) {
 			console.log(error);
 		}
