@@ -9,16 +9,24 @@ import {
 import Avatar from "../../images/profile-avatar.jpg";
 import "../ShopDetails/ShopDetails.css";
 import "./Profile.css";
-import Modal from "./ProfileModal"
+import ProfileModal from "./ProfileModal"
 
 export const Profile = ({ user, props }) => {
 	const [reviews, setReviews] = useState([]);
 	const [favShops, setFavShops] = useState([]);
-	const [isOpen, setIsOpen] = useState(false)
+	const [showmodal, setshowmodal] = useState(false)
 
 	useEffect(() => {
 		viewProfile();
 	}, []);
+
+	const openModal = () => {
+		setshowmodal(prev => !prev);
+	};
+
+	const closeModal = () => {
+		setshowmodal(false);
+	};
 
 	const viewProfile = async () => {
 		try {
@@ -40,6 +48,29 @@ export const Profile = ({ user, props }) => {
 			console.log(error);
 		}
 	};
+
+	const updateReview = async (req, res) => {
+		try {
+			const response = await fetch(
+				`${process.env.REACT_APP_REST_API}review` ,
+				{     
+					method: "PUT", 
+					headers: { "content-Type": "application/json"},
+					body: JSON.stringify({ 
+						username: user.user.username,
+						name: user.user.newName,
+						text: user.user.newText,
+						rating: user.user.newRating
+					})
+			}
+			)
+			const data = await response.json();
+			console.log(data.reviews)
+			setReviews(data.reviews)
+		} catch (error){
+			console.log(error);
+		}
+	}
 
 	const deleteReview = async (props) => {
 		try {
@@ -195,15 +226,15 @@ export const Profile = ({ user, props }) => {
 											>
 												{iconBin}
 											</button>
-											<div>
-											<button onClick={() => setIsOpen(true)}>
-										Edit {}
-									</button>
-									<Modal open={isOpen} onClose={() => setIsOpen(false)}>
-										Fancy model
-									</Modal>
-									
-								</div>
+											<container>
+											<button onClick={openModal}>
+												Edit {}
+											</button>
+											<ProfileModal showmodal={showmodal} setshowmodal={setshowmodal}>
+												<button onClick={closeModal}>Close</button>
+												<p> Modal </p>
+											</ProfileModal>
+											</container>
 										</div>
 										<p>
 											<span>

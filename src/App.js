@@ -18,9 +18,10 @@ const App = () => {
 	const [shops, setShops] = useState([]);
 	const [shopNum, setShopNum] = useState();
 	const [favShops, setFavShops] = useState([]);
+	const [isAuth, setIsAuth] = useState([]);
 
 	useEffect(() => {
-		tokenFetch(setUser)
+		tokenFetch(setUser, setIsAuth)
 	}, []);
 
 	const handleSignup = async (e) => {
@@ -50,7 +51,7 @@ const App = () => {
 
 	return (
 		<div>
-			{user ? (
+			{user? (
 				<div className="app">
 					<Router>
 						<Navbar props={{ handleLogout }} />
@@ -83,6 +84,7 @@ const App = () => {
 										user={user}
 										props={{ handleLogout }}
 										favShops={favShops}
+										setIsAuth={setIsAuth}
 									/>
 								}
 							/>
@@ -101,7 +103,9 @@ const App = () => {
 									handleSignup,
 									setEmail,
 									setUsername,
-									setPassword
+									setPassword,
+									setIsAuth
+
 								}}
 							/>
 						</div>
@@ -110,7 +114,8 @@ const App = () => {
 								props={{
 									handleLogin,
 									setUsername,
-									setPassword
+									setPassword,
+									setIsAuth
 								}}
 							/>
 						</div>

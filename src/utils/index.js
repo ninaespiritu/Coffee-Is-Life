@@ -1,5 +1,5 @@
 // SIGNUP PAGE
-export const fetchSignup = async (setUser, email, username, password) => {
+export const fetchSignup = async (setUser, email, username, password, setIsAuth) => {
 	try {
 		const response = await fetch(`${process.env.REACT_APP_REST_API}user`, {
 			method: "POST",
@@ -14,6 +14,7 @@ export const fetchSignup = async (setUser, email, username, password) => {
 		console.log(data);
 		setUser(data);
 		localStorage.setItem("myToken", data.token)
+		setIsAuth(true);
 	} catch (error) {
 	  console.log(error);
 	  
@@ -22,7 +23,7 @@ export const fetchSignup = async (setUser, email, username, password) => {
 };
 
 // LOGIN PAGE
-export const fetchLogin = async (setUser, username, password) => {
+export const fetchLogin = async (setUser, username, password, setIsAuth) => {
 	try {
 		const response = await fetch(`${process.env.REACT_APP_REST_API}login`, {
 			method: "POST",
@@ -36,6 +37,7 @@ export const fetchLogin = async (setUser, username, password) => {
 		console.log(data);
 		setUser(data);
 		localStorage.setItem("myToken", data.token)
+		setIsAuth(true);
 	} catch (error) {
 		console.log(error);
 	}
@@ -55,22 +57,22 @@ export const fetchShops = async (setShops) => {
 	}
 };
 
-export const tokenFetch = async (setUser) => {
+export const tokenFetch = async (setUser, setIsAuth) => {
 	try {
-		const token = localStorage.getItem("myToken");
+		const token = localStorage.getItem("myToken", "");
 		console.log(token)
 		if (!token || token === "undefined" ){
 			console.log("got here")
 			return 
 		}
-
 		const response = await fetch(`${process.env.REACT_APP_REST_API}token`, { 
 			method: "GET", 
-			headers: {"Authorization":`Bearer ${token}`}
+			headers: {"Authorization":`Bearer ${token} `}
 		});
 		const data = await response.json();
 		setUser(data.user);
-		localStorage.setItem("myToken", data.token)
+		localStorage.setItem("myToken", data.token);
+		setIsAuth(true);
 	} catch (error) {
 		console.error(error);
 	}
