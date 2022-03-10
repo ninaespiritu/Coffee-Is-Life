@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { item, container } from "../Animations";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faStar } from "@fortawesome/free-solid-svg-icons";
 import "./ShopDetails.css";
@@ -54,7 +56,7 @@ export const ShopDetails = ({ shops, shopNum, user, setFavShops }) => {
 			const data = await response.json();
 			console.log(data.newFavShop);
 			setFavShops(data.newFavShop);
-			alert(`${shops[shopNum].name} has been added to your Favourites.`)
+			alert(`${shops[shopNum].name} has been added to your Favourites.`);
 		} catch (error) {
 			console.log(error);
 		}
@@ -94,9 +96,14 @@ export const ShopDetails = ({ shops, shopNum, user, setFavShops }) => {
 	return (
 		<div className="shopdetails">
 			{shop && (
-				<div className="shop">
+				<motion.div
+					variants={container}
+					initial="hidden"
+					animate="show"
+					className="shop"
+				>
 					<div className="shop-header">
-						<div className="shop-header-text">
+						<motion.div variants={item} className="shop-header-text">
 							<h4>Shop Details</h4>
 							<h1>{shop.name}</h1>
 							<div className="shop-rating">
@@ -106,12 +113,12 @@ export const ShopDetails = ({ shops, shopNum, user, setFavShops }) => {
 									<span>({reviewsAll} Reviews)</span>
 								</p>
 							</div>
-						</div>
+						</motion.div>
 					</div>
 
 					<div className="shop-info">
 						<div className="shop-info-box">
-							<div className="shop-text">
+							<motion.div variants={item} className="shop-text">
 								<h4>Location</h4>
 								<h3>{shop.location}</h3>
 								<h4>Description</h4>
@@ -119,11 +126,11 @@ export const ShopDetails = ({ shops, shopNum, user, setFavShops }) => {
 								<button onClick={() => addFavShop()}>
 									Add to Favourites
 								</button>
-							</div>
+							</motion.div>
 
-							<div className="shop-img">
+							<motion.div variants={item} className="shop-img">
 								<img src={shop.url} alt="" />
-							</div>
+							</motion.div>
 						</div>
 					</div>
 
@@ -171,7 +178,7 @@ export const ShopDetails = ({ shops, shopNum, user, setFavShops }) => {
 							</div>
 						</div>
 					</div>
-				</div>
+				</motion.div>
 			)}
 		</div>
 	);
