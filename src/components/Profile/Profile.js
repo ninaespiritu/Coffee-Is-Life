@@ -21,7 +21,7 @@ export const Profile = ({ user, props }) => {
 	}, []);
 
 	const openModal = () => {
-		setshowmodal(prev => !prev);
+		setshowmodal(true);
 	};
 
 	const closeModal = () => {
@@ -49,7 +49,7 @@ export const Profile = ({ user, props }) => {
 		}
 	};
 
-	const updateReview = async (req, res) => {
+	const updateReview = async (props) => {
 		try {
 			const response = await fetch(
 				`${process.env.REACT_APP_REST_API}review` ,
@@ -57,14 +57,16 @@ export const Profile = ({ user, props }) => {
 					method: "PUT", 
 					headers: { "content-Type": "application/json"},
 					body: JSON.stringify({ 
-						username: user.user.username,
-						name: user.user.newName,
-						text: user.user.newText,
-						rating: user.user.newRating
+						_id: props,
+						text: user.user.newtext
 					})
 			}
 			)
 			const data = await response.json();
+			data.map((upReviewData) => {
+				upReviewData.text = user.user.newtext
+				return upReviewData;
+			})
 			console.log(data.reviews)
 			setReviews(data.reviews)
 		} catch (error){
@@ -230,9 +232,8 @@ export const Profile = ({ user, props }) => {
 											<button onClick={openModal}>
 												Edit {}
 											</button>
-											<ProfileModal showmodal={showmodal} setshowmodal={setshowmodal}>
+											<ProfileModal showmodal={showmodal} setshowmodal={setshowmodal} setReviews={setReviews}>
 												<button onClick={closeModal}>Close</button>
-												<p> Modal </p>
 											</ProfileModal>
 											</container>
 										</div>

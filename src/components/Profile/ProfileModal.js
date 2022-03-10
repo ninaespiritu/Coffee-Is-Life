@@ -1,16 +1,29 @@
 import React from "react";
 import "./Profile.css";
-import updateReview from "./Profile"
 
 
 
-export default function ProfileModal ({ showmodal, setshowmodal}){
+export default function ProfileModal ({ showmodal, setshowmodal, updateReview }){
     return (
         <> {showmodal ? (
             <div className="modalbackground">
                 <div className="modalwrapper" showmodal={showmodal}>
                     <div className="modalcontent">
-                        <h1> </h1>
+                        <table>
+                            <thead>
+                            <tr>
+                                <td> text </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                {updateReview.map(user => 
+                                    <td>{user.user.text}</td>
+                                    )}
+                                </tr>
+                            </tbody>
+                        </table>
+                        
                     </div>
                     <div className="closeModalButton" aria-label="Close modal" onClick={() => setshowmodal
                     (prev => !prev)} />
