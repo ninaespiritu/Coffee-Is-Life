@@ -1,31 +1,42 @@
+import { motion } from "framer-motion";
+import { image, item, container } from "../Animations";
 import "./LandingPage.css";
 import Logo from "../../images/logo.png";
 import Coffee from "../../images/landing-coffee.png";
 
 export const LandingPage = () => {
 	return (
-		<div className="landing">
+		<motion.div
+			variants={container}
+			initial="hidden"
+			animate="show"
+			className="landing"
+		>
 			<div className="landing-logo">
 				<img src={Logo} alt="" />
 				<h4>Coffee Is Life</h4>
 			</div>
 			<div className="landing-page">
-				<div className="landing-text">
-					<h1> Find your perfect cup of coffee today.</h1>
-					<p>
+				<motion.div className="landing-text">
+					<motion.h1 variants={item}>
+						Find your perfect cup of coffee today.
+					</motion.h1>
+					<motion.p variants={item}>
 						We help you find your next favourite shop for your
 						coffee needs. Explore hundreds of cafés, and view
 						ratings and reviews published by fellow coffee lovers.
-					</p>
+					</motion.p>
 					<a href="#getstarted">
-						<button>Get Started &#8594;</button>
+						<motion.button variants={item}>
+							Get Started &#8594;
+						</motion.button>
 					</a>
-				</div>
+				</motion.div>
 
-				<div className="landing-img">
+				<motion.div variants={image} className="landing-img">
 					<img src={Coffee} alt="" />
-				</div>
+				</motion.div>
 			</div>
-		</div>
+		</motion.div>
 	);
 };

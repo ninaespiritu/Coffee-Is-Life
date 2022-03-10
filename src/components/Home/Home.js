@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { home, item } from "../Animations";
 import { fetchShops } from "../../utils";
 import "./Home.css";
 
@@ -15,25 +17,39 @@ export const Home = ({ shops, setShops, setShopNum }) => {
 
 	return (
 		<div className="home">
-			<div className="header">
-				<div className="header-text">
-					<h1>Coffee is life.</h1>
-					<p>
+			<motion.div
+				variants={home}
+				initial="hidden"
+				animate="show"
+				className="header"
+			>
+				<motion.div className="header-text">
+					<motion.h1 variants={item}>Coffee is life.</motion.h1>
+					<motion.p variants={item}>
 						Browse through top-rated cafés, or discover new coffee
 						shops in your area &mdash; whatever you're looking for,
 						Coffee Is Life will have it all!
-					</p>
+					</motion.p>
 					<a href="#shop">
-						<button>Explore &#8594;</button>
+						<motion.button variants={item}>
+							Explore &#8594;
+						</motion.button>
 					</a>
-				</div>
-			</div>
+				</motion.div>
+			</motion.div>
 
 			<div id="shop" className="browse">
 				<h2>Browse all cafés</h2>
 				<div className="grid">
 					{shops.map((shop, i) => (
-						<div key={shop._id} className="shops">
+						<motion.div
+							whileHover={{
+								scale: 1.035,
+								boxShadow: "0 5px 20px rgba(0, 0, 0, 0.075)",
+							}}
+							key={shop._id}
+							className="shops"
+						>
 							<Link
 								to={`/shop/details`}
 								onClick={() => setShopNum(i)}
@@ -46,7 +62,7 @@ export const Home = ({ shops, setShops, setShopNum }) => {
 								<h3>{shop.name}</h3>
 								<p>{shop.location}</p>
 							</div>
-						</div>
+						</motion.div>
 					))}
 				</div>
 			</div>
