@@ -9,6 +9,7 @@ import { Profile } from "./components/Profile/Profile";
 import { Navbar } from "./components/Navbar/Navbar";
 import { ShopDetails } from "./components/ShopDetails/ShopDetails";
 import { LandingPage } from "./components/LandingPage/LandingPage";
+import { Footer } from "./components/Footer/Footer";
 
 const App = () => {
 	const [user, setUser] = useState();
@@ -82,6 +83,7 @@ const App = () => {
 								}
 							/>
 						</Routes>
+						<Footer />
 					</Router>
 				</div>
 			) : (
