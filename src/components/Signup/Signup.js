@@ -23,15 +23,24 @@ export const Signup = ({ props }) => {
 				<input
 					onChange={(e) => props.setEmail(e.target.value)}
 					placeholder="Email"
+					type="email"
+					required
 				/>
 				<input
 					onChange={(e) => props.setUsername(e.target.value)}
 					placeholder="Username"
+					type="text"
+					minLength="6"
+					maxLength="20"
+					required
 				/>
 				<input
 					onChange={(e) => props.setPassword(e.target.value)}
 					placeholder="Password"
 					type={passwordShown ? "text" : "password"}
+					minLength="8"
+					maxLength="20"
+					required
 				/>
 				<div>
 					<i onClick={togglePasswordVisibility}>{showEye ? eye2 : eye}</i>

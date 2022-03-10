@@ -45,7 +45,6 @@ export const Home = ({ shops, setShops, setShopNum }) => {
 							<div className="shops-info">
 								<h3>{shop.name}</h3>
 								<p>{shop.location}</p>
-								<h4>{shop.reviews.length} REVIEWS</h4>
 							</div>
 						</div>
 					))}

@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faStar } from "@fortawesome/free-solid-svg-icons";
 import "./ShopDetails.css";
 import ShopReview from "./ShopReview";
-import { fetchShop, fetchReview } from "../../utils";
+import { fetchShop } from "../../utils";
 
-export const ShopDetails = ({ shops, shopNum, user }) => {
+export const ShopDetails = ({ shops, shopNum, user, setFavShops }) => {
 	const [shop, setShop] = useState();
 	const [reviews, setReviews] = useState([]);
 	const [newReviews, setNewReviews] = useState([]);
@@ -30,6 +30,31 @@ export const ShopDetails = ({ shops, shopNum, user }) => {
 			const data = await response.json();
 			console.log(data.reviews);
 			setNewReviews(data.reviews);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const addFavShop = async () => {
+		try {
+			const response = await fetch(
+				`${process.env.REACT_APP_REST_API}favourites`,
+				{
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						username: user.user.username,
+						name: shops[shopNum].name,
+						rating: averageAll,
+						reviews: reviewsAll,
+						url: shops[shopNum].url,
+					}),
+				}
+			);
+			const data = await response.json();
+			console.log(data.newFavShop);
+			setFavShops(data.newFavShop);
+			alert(`${shops[shopNum].name} has been added to your Favourites.`)
 		} catch (error) {
 			console.log(error);
 		}
@@ -91,6 +116,9 @@ export const ShopDetails = ({ shops, shopNum, user }) => {
 								<h3>{shop.location}</h3>
 								<h4>Description</h4>
 								<p>{shop.description}</p>
+								<button onClick={() => addFavShop()}>
+									Add to Favourites
+								</button>
 							</div>
 
 							<div className="shop-img">

@@ -17,6 +17,7 @@ const App = () => {
 	const [password, setPassword] = useState("");
 	const [shops, setShops] = useState([]);
 	const [shopNum, setShopNum] = useState();
+	const [favShops, setFavShops] = useState([]);
 
 	useEffect(() => {
 		tokenFetch(setUser)
@@ -71,6 +72,7 @@ const App = () => {
 										shops={shops}
 										shopNum={shopNum}
 										user={user}
+										setFavShops={setFavShops}
 									/>
 								}
 							/>
@@ -80,6 +82,7 @@ const App = () => {
 									<Profile
 										user={user}
 										props={{ handleLogout }}
+										favShops={favShops}
 									/>
 								}
 							/>
