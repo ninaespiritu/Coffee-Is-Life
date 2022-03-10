@@ -79,15 +79,16 @@ export const Profile = ({ user, props }) => {
 	};
 
 	// AVERAGE RATING
-	let myRatingSum = 0;
-	let myRating = null;
+	// let myRatingSum = 0;
+	// let myRating = 0;
 
-	for (let i = 0; i < reviews.length; i++) {
-		myRating = reviews[i];
-		myRatingSum = myRating.rating + myRatingSum;
-	}
-	const myRatingAverage = (myRatingSum / reviews.length).toFixed(2);
-	console.log(myRatingAverage);
+	// for (let i = 0; i < reviews.length; i++) {
+		
+	// 	myRating = reviews[i];
+	// 	myRatingSum = myRating.rating + myRatingSum;
+	// }
+	// const myRatingAverage = (myRatingSum / reviews.length).toFixed(2);
+	// console.log(myRatingAverage);
 
 	// ICONS
 	const reviewStar = <FontAwesomeIcon icon={faStar} className="star-icon" />;
@@ -124,7 +125,7 @@ export const Profile = ({ user, props }) => {
 										Reviews
 									</h3>
 									<h3>
-										<span>{myRatingAverage}</span> Average
+										<span></span> Average
 										Rating
 									</h3>
 								</div>

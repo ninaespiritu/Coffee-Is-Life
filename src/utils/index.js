@@ -50,7 +50,6 @@ export const fetchShops = async (setShops) => {
 		const data = await response.json();
 		console.log(data.shops);
 		setShops(data.shops);
-		localStorage.setItem("myToken", data.token)
 	} catch (error) {
 		console.log(error);
 	}
@@ -59,12 +58,19 @@ export const fetchShops = async (setShops) => {
 export const tokenFetch = async (setUser) => {
 	try {
 		const token = localStorage.getItem("myToken");
-		const response = await fetch(`http://localhost:5001/token`, { 
+		console.log(token)
+		if (!token || token === "undefined" ){
+			console.log("got here")
+			return 
+		}
+
+		const response = await fetch(`${process.env.REACT_APP_REST_API}token`, { 
 			method: "GET", 
-			headers: { "Authorization": `Bearer ${token}`}
+			headers: {"Authorization":`Bearer ${token}`}
 		});
 		const data = await response.json();
 		setUser(data.user);
+		localStorage.setItem("myToken", data.token)
 	} catch (error) {
 		console.error(error);
 	}

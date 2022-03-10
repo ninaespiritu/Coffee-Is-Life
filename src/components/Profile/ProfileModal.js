@@ -25,7 +25,6 @@ export default function Modal ({ open, onClose, updateReview }){
     if(!open) return null
     return (
         <>
-            
             <div style={MODAL_STYLES}> 
                 <button onClick={onClose}> Close</button>
                 {updateReview}
