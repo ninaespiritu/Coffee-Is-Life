@@ -13,8 +13,9 @@
 	--bg-light: #f3f3f3;
 	--bg-cream: #eff0ed;
 	--bg-dark: #292520;
-	--bg-orange: #9a4e2c;
-	--bg-orangelight: #f39a71;
+	/* --bg-orange: #9a4e2c; */
+	/* --bg-orange: #ac5921; */
+	--bg-orange: #a55824;
 	--text-light: #f3f3f3;
 	--text-dark: #2a1b16;
 	--text-grey: #8e9291;
@@ -32,7 +33,6 @@ html {
 	font-family: var(--font-text);
 }
 .app {
-	/* margin-top: 70px; */
 	background-color: var(--bg-light);
 }
 

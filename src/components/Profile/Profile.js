@@ -5,16 +5,28 @@ import { item, container } from "../Animations";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faLocationDot,
+	faPen,
 	faStar,
 	faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
+import { ProfileModal } from "./ProfileModal";
 import Avatar from "../../images/profile-avatar.jpg";
-import "../ShopDetails/ShopDetails.css";
 import "./Profile.css";
 
 export const Profile = ({ user, props }) => {
 	const [reviews, setReviews] = useState([]);
+	const [reviewNum, setReviewNum] = useState();
 	const [favShops, setFavShops] = useState([]);
+	const [showmodal, setshowmodal] = useState(false);
+
+	const openModal = (i) => {
+		setshowmodal(true);
+		setReviewNum(i);
+	};
+
+	const closeModal = () => {
+		setshowmodal(false);
+	};
 
 	useEffect(() => {
 		viewProfile();
@@ -96,6 +108,9 @@ export const Profile = ({ user, props }) => {
 	const iconStar = <FontAwesomeIcon icon={faStar} className="rating-icon" />;
 	const iconBin = (
 		<FontAwesomeIcon icon={faTrashCan} size="lg" className="bin-icon" />
+	);
+	const iconPen = (
+		<FontAwesomeIcon icon={faPen} size="lg" className="bin-icon" />
 	);
 	const iconLocation = (
 		<FontAwesomeIcon icon={faLocationDot} className="location-icon" />
@@ -196,20 +211,40 @@ export const Profile = ({ user, props }) => {
 							"You have not published any reviews. Write your first review today!"
 						) : (
 							<div>
-								{reviews.map((review) => (
+								{reviews.map((review, i) => (
 									<div key={review._id} className="my-review">
 										<div className="my-review-user">
 											<div className="my-review-header">
 												<div>{iconLocation}</div>
 												<h4>{review.name}</h4>
 											</div>
-											<button
-												onClick={() =>
-													deleteReview(review._id)
-												}
-											>
-												{iconBin}
-											</button>
+											<div className="icons">
+												<div>
+													<button
+														onClick={() =>
+															openModal(i)
+														}
+													>
+														{iconPen}
+													</button>
+													<ProfileModal
+														closeModal={closeModal}
+														showmodal={showmodal}
+														reviews={reviews}
+														reviewNum={reviewNum}
+														viewProfile={
+															viewProfile
+														}
+													></ProfileModal>
+												</div>
+												<button
+													onClick={() =>
+														deleteReview(review._id)
+													}
+												>
+													{iconBin}
+												</button>
+											</div>
 										</div>
 										<p>
 											<span>
