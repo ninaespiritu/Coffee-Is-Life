@@ -1,5 +1,9 @@
 import { useState } from "react";
-import "./Profile.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "framer-motion";
+import { item, modal, modalItem } from "../Animations";
+import "./ProfileModal.css";
 
 export const ProfileModal = ({ closeModal, showmodal, reviews, reviewNum, viewProfile }) => {
 	const [text, setText] = useState();
@@ -58,46 +62,61 @@ export const ProfileModal = ({ closeModal, showmodal, reviews, reviewNum, viewPr
 	return (
 		<>
 			{showmodal ? (
-				<div className="modalbackground">
-					<div className="modalwrapper" showmodal={showmodal}>
+				<motion.div
+                    variants={modal}
+                    initial="hidden"
+                    animate="show"
+                    className="modalbackground"
+                >
+					<motion.div variants={modalItem} className="modalwrapper" showmodal={showmodal}>
 						<div className="modalcontent">
-							<button onClick={closeModal}>Close</button>
-                            
-                            <h3>{reviews[reviewNum].name}</h3>
+                            <div className="close">
+                                <button onClick={closeModal}>
+                                    <FontAwesomeIcon icon={faXmark} size="xl" />
+                                </button>
+                            </div>							
+                            <div>
+                                <h3>{reviews[reviewNum].name}</h3>
 
-							<form onSubmit={updateRating}>	
-                                <p>
-                                    <span>
-                                        Rating: {reviews[reviewNum].rating}/10
-                                    </span>
-                                </p>
-								<input
-                                    type="number"
-                                    placeholder="New rating (1 - 10)"
-                                    min="1"
-                                    max="10"
-                                    required
-                                    value={rating}
-                                    onChange={(e) => setRating(e.target.value)}
-                                />
-                                <button type="submit">Update Rating</button>
-							</form>
-
-                            <form onSubmit={updateReview}>
-                                <p>{reviews[reviewNum].text}</p>
-								<textarea
-									type="text"
-									placeholder="New review"
-									maxLength="1000"
-                                    required
-									value={text}
-									onChange={(e) => setText(e.target.value)}
-								/>
-								<button type="submit">Update Review</button>
-							</form>
+                                <form onSubmit={updateRating}>
+                                    <p>
+                                        <span>
+                                            Rating: {reviews[reviewNum].rating}/10
+                                        </span>
+                                    </p>
+                                    <input
+                                        type="number"
+                                        placeholder="New rating (1 - 10)"
+                                        min="1"
+                                        max="10"
+                                        required
+                                        value={rating}
+                                        onChange={(e) => setRating(e.target.value)}
+                                    />
+                                    <button type="submit">Update Rating</button>
+                                </form>
+                                <br />
+                                <form onSubmit={updateReview}>
+                                    <p>
+                                        <span>
+                                            Review:
+                                        </span>
+                                    </p>
+                                    <small>{reviews[reviewNum].text}</small>
+                                    <textarea
+                                        type="text"
+                                        placeholder="New review"
+                                        maxLength="1000"
+                                        required
+                                        value={text}
+                                        onChange={(e) => setText(e.target.value)}
+                                    />
+                                    <button type="submit">Update Review</button>
+                                </form>
+                            </div>
 						</div>
-					</div>
-				</div>
+					</motion.div>
+				</motion.div>
 			) : null}
 		</>
 	);

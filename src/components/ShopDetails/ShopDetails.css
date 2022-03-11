@@ -114,12 +114,14 @@
 	flex-direction: column;
 }
 .add-review-box form label {
-	margin: 0 0 20px;
+	margin: -5px 0 15px;
 	color: var(--text-greylight);
+	line-height: 1.5;
 }
 .add-review-box form textarea {
 	min-height: 120px;
 	resize: vertical;
+	line-height: 1.5;
 }
 .add-review-box form textarea,
 .add-review-box form input {
