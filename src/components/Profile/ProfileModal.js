@@ -17,7 +17,7 @@ export default function ProfileModal ({ showmodal, setshowmodal, updateReview })
                             </thead>
                             <tbody>
                                 <tr>
-                                {updateReview.map(user => 
+                                {updateReview.map(user =>
                                     <td>{user.user.text}</td>
                                     )}
                                 </tr>
