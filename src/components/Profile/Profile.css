@@ -82,8 +82,8 @@
 	font-size: 17px;
 } */
 .info button {
-	width: 32px;
-	height: 32px;
+	width: 34px;
+	height: 34px;
 	color: var(--text-grey);
 	font-size: 14px;
 	font-family: var(--font-text);
@@ -155,6 +155,11 @@
 .my-review-header {
 	display: flex;
 	flex-direction: row;
+}
+.icons {
+	width: 76px;
+	display: flex;
+	justify-content: space-between;
 }
 .bin-icon {
 	margin: 0 5px;
@@ -254,4 +259,66 @@
 		padding: 0 0 5px;
 		font-size: 16px;
 	}
+}
+
+.modalcontainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 500px;
+	width: 500px;
+}
+
+.modalbutton {
+	min-width: 100px;
+	padding: 16px 32px;
+	border-radius: 4px;
+	border: none;
+	background: #141414;
+	color: #fff;
+	font-size: 24px;
+	cursor: pointer;
+}
+
+.modalbackground {
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.25);
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modalwrapper {
+	width: 600px;
+	height: 400px;
+	box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+	background: #fff;
+	color: #000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* display: grid;
+	grid-template-columns: 1fr 1fr; */
+	position: relative;
+	z-index: 10;
+	/* border-radius: 10px; */
+}
+
+.modalcontent {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	line-height: 1.8;
+	color: #141414;
+}
+
+.modalcontent form {
+	width: 500px;
+	display: flex;
+	flex-direction: column;
 }
