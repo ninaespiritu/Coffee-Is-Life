@@ -9,11 +9,11 @@ import { fetchShop } from "../../utils";
 
 export const ShopDetails = ({ shops, shopNum, user, setFavShops }) => {
 	const [shop, setShop] = useState();
-	const [reviews, setReviews] = useState([]);
+	// const [reviews, setReviews] = useState([]);
 	const [newReviews, setNewReviews] = useState([]);
 
 	useEffect(() => {
-		fetchShop(shops, shopNum, setShop, setReviews);
+		fetchShop(shops, shopNum, setShop);
 		fetchReview();
 	}, []);
 
@@ -63,13 +63,13 @@ export const ShopDetails = ({ shops, shopNum, user, setFavShops }) => {
 	};
 
 	// SUM (OLD REVIEW RATINGS)
-	let sumRating = 0;
-	let itemRating = null;
+	// let sumRating = 0;
+	// let itemRating = null;
 
-	for (let i = 0; i < reviews.length; i++) {
-		itemRating = reviews[i];
-		sumRating = itemRating.rating + sumRating;
-	}
+	// for (let i = 0; i < reviews.length; i++) {
+	// 	itemRating = reviews[i];
+	// 	sumRating = itemRating.rating + sumRating;
+	// }
 
 	// SUM (NEW REVIEW RATINGS)
 	let sumNewRating = 0;
@@ -81,8 +81,8 @@ export const ShopDetails = ({ shops, shopNum, user, setFavShops }) => {
 	}
 
 	// AVERAGE RATING
-	const reviewsAll = reviews.length + newReviews.length;
-	const averageAll = ((sumRating + sumNewRating) / reviewsAll).toFixed(2);
+	const reviewsAll = newReviews.length;
+	const averageAll = (sumNewRating / reviewsAll).toFixed(2);
 	console.log(averageAll);
 
 	// ICONS
@@ -147,7 +147,7 @@ export const ShopDetails = ({ shops, shopNum, user, setFavShops }) => {
 
 							<div className="list-review">
 								<h2>Reviews</h2>
-								{reviews.map((review) => (
+								{/* {reviews.map((review) => (
 									<div key={review._id} className="review">
 										<div className="review-user">
 											<div>{userAvatar}</div>
@@ -160,7 +160,7 @@ export const ShopDetails = ({ shops, shopNum, user, setFavShops }) => {
 										</p>
 										<p>{review.text}</p>
 									</div>
-								))}
+								))} */}
 								{newReviews.map((review) => (
 									<div key={review._id} className="review">
 										<div className="review-user">

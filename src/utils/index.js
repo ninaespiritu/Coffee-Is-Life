@@ -52,7 +52,7 @@ export const fetchShops = async (setShops) => {
 };
 
 // SHOP DETAILS PAGE: Fetch shop info
-export const fetchShop = async (shops, shopNum, setShop, setReviews) => {
+export const fetchShop = async (shops, shopNum, setShop) => {
 	try {
 		const response = await fetch(
 			`${process.env.REACT_APP_REST_API}shop/details`,
@@ -66,9 +66,9 @@ export const fetchShop = async (shops, shopNum, setShop, setReviews) => {
 		);
 		const data = await response.json();
 		console.log(data.shop);
-		console.log(data.shop.reviews);
+		// console.log(data.shop.reviews);
 		setShop(data.shop);
-		setReviews(data.shop.reviews);
+		// setReviews(data.shop.reviews);
 	} catch (error) {
 		console.log(error);
 	}
